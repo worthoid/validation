@@ -1,0 +1,86 @@
+
+/* Browser specific, hacks etc. */
+
+body {
+	-webkit-font-smoothing: antialiased;
+	-webkit-touch-callout: none;
+}
+
+:-moz-ui-invalid {
+	box-shadow: initial;
+}
+
+/* Main */
+
+html {
+	@include text-size-adjust(100%);
+}
+
+/* Box model */
+
+body,
+button,
+fieldset,
+input,
+ol,
+select,
+textarea,
+ul {
+	margin: 0;
+}
+
+a,
+button,
+input,
+select,
+textarea {
+	outline: none 0;
+}
+
+fieldset {
+	border: none 0;
+}
+
+fieldset,
+legend {
+	padding: 0;
+}
+
+/* Forms */
+
+button,
+input,
+select,
+textarea {
+	color: inherit;
+	font: inherit;
+}
+
+button,
+input[type="checkbox"],
+input[type="radio"],
+select {
+	&:enabled {
+		cursor: pointer;
+	}
+}
+
+label[for]:not([disabled]) {
+	cursor: pointer;
+}
+
+button,
+select {
+	@include user-select(none);
+}
+
+textarea {
+	resize: vertical;
+}
+
+/* Other */
+
+table {
+	border-collapse: collapse;
+	border-spacing: 0;
+}

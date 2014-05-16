@@ -1,0 +1,27 @@
+
+@mixin appearance($appearance) {
+	-moz-appearance: $appearance;
+	-webkit-appearance: $appearance;
+	appearance: $appearance;
+}
+
+@mixin placeholder($colour) {
+	::-moz-placeholder {
+		color: $colour;
+		opacity: 1;
+	}
+
+	:-ms-input-placeholder {
+		color: $colour;
+	}
+
+	::-webkit-input-placeholder,
+	::-webkit-datetime-edit-text,
+	::-webkit-datetime-edit-day-field[aria-valuetext="blank"],
+	::-webkit-datetime-edit-month-field[aria-valuetext="blank"],
+	::-webkit-datetime-edit-year-field[aria-valuetext="blank"] {
+		color: $colour;
+	}
+
+	@content;
+}

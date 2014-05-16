@@ -1,0 +1,90 @@
+
+// ==========================================================================
+// Description.
+//
+// $param	Description
+// ==========================================================================
+@mixin arrow($pos, $size: $grid-width / 3, $colour: initial, $border-colour: null, $border-width: 0, $relative: null) {
+	$size-inner: if($border-width, $size - $border-width, $size);
+
+	&%arrow-common {
+		border-color: transparent;
+		border-style: solid;
+		content: "";
+		position: absolute;
+	}
+
+	@if $relative {
+		position: relative;
+	}
+
+	@if $border-colour {
+		&::before {
+			@extend %arrow-common;
+
+			border-width: $size;
+
+			@if $pos == bottom or $pos == top {
+				left: calc(50% - #{$size});
+			}
+
+			@if $pos == left or $pos == right {
+				top: calc(50% - #{$size});
+			}
+
+			@if $pos == bottom {
+				border-top-color: $border-colour;
+				bottom: -($size * 2);
+			}
+
+			@if $pos == left {
+				border-right-color: $border-colour;
+				left: -($size * 2);
+			}
+
+			@if $pos == right {
+				border-left-color: $border-colour;
+				right: -($size * 2);
+			}
+
+			@if $pos == top {
+				border-bottom-color: $border-colour;
+				top: -($size * 2);
+			}
+		}
+	}
+
+	&::after {
+		@extend %arrow-common;
+
+		border-width: $size-inner;
+
+		@if $pos == bottom or $pos == top {
+			left: calc(50% - #{$size-inner});
+		}
+
+		@if $pos == left or $pos == right {
+			top: calc(50% - #{$size-inner});
+		}
+
+		@if $pos == bottom {
+			border-top-color: $colour;
+			bottom: -($size-inner * 2);
+		}
+
+		@if $pos == left {
+			border-right-color: $colour;
+			left: -($size-inner * 2);
+		}
+
+		@if $pos == right {
+			border-left-color: $colour;
+			right: -($size-inner * 2);
+		}
+
+		@if $pos == top {
+			border-bottom-color: $colour;
+			top: -($size-inner * 2);
+		}
+	}
+}

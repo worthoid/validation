@@ -1,0 +1,19 @@
+
+<svg id="check" width="36" height="36" viewBox="0 0 36 36" version="1.1"
+		xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink">
+	<defs>
+		<linearGradient id="grad" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#fff" />
+		</linearGradient>
+	</defs>
+
+	<path fill="none" stroke="url(#grad)" stroke-dasharray="20"
+			stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+			d="m11.5,20l4.5,3.5l7.5,-11.5">
+		<animate attributeName="stroke-dashoffset" attributeType="XML"
+				from="20" to="0" dur="250ms" repeatCount="1"
+				begin="check.click" restart="whenNotActive"
+				calcMode="spline" keySplines="0.75 0 1 1" values="20;0" />
+	</path>
+</svg>

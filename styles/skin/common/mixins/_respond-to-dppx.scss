@@ -1,0 +1,16 @@
+
+// ==========================================================================
+// Description. Remove -webkit prefix when no longer required.
+//
+// $param	Description
+// ==========================================================================
+@mixin respond-to-dppx($dppx: 2) {
+	@media print,
+	only screen and (-webkit-min-device-pixel-ratio: $dppx),
+	only screen and (min-device-pixel-ratio: $dppx),
+	only screen and (min-resolution: $dppx * 96dpi),
+	only screen and (min-resolution: $dppx + dppx)
+	{
+		@content;
+	}
+}

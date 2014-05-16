@@ -1,0 +1,566 @@
+<!doctype html>
+<!--html class="no-js" lang="en" manifest=""-->
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+	<title>Validation</title>
+	<meta name="application-name" content="Validation" />
+	<!--meta name="apple-mobile-web-app-capable" content="yes" />
+	<meta name="apple-mobile-web-app-status-bar-style" content="black" /-->
+	<meta name="apple-mobile-web-app-title" content="Validation" />
+	<meta name="description" content="" />
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui" />
+	<!--[if IE]>
+	<meta name="msapplication-starturl" content="index.html?pinned=true" />
+	<meta name="msapplication-TileColor" content="" />
+	<meta name="msapplication-TileImage" content="styles/skin/venture/images/device/icons/72x72@2x.png" />
+	<![endif]-->
+	<link rel="shortcut icon" href="styles/skin/venture/images/device/icons/favicon.ico" />
+	<link rel="icon" href="styles/skin/venture/images/device/icons/favicon.png" />
+	<link rel="apple-touch-icon-precomposed" href="styles/skin/venture/images/device/icons/57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="styles/skin/venture/images/device/icons/72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="styles/skin/venture/images/device/icons/76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="styles/skin/venture/images/device/icons/57x57@2x.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="styles/skin/venture/images/device/icons/60x60@2x.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="styles/skin/venture/images/device/icons/72x72@2x.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="styles/skin/venture/images/device/icons/76x76@2x.png" />
+	<!--link rel="apple-touch-startup-image" href="styles/skin/venture/images/device/startup/.png" /-->
+	<link rel="stylesheet" href="styles/style.css" />
+	<!--script src="scripts/lib/modernizr.js"></script-->
+</head>
+
+<body>
+<noscript></noscript>
+<main>
+
+<form>
+	<!--progress></progress-->
+	<output class="errors" role="alert"></output>
+	<fieldset spellcheck="false">
+		<ol>
+			<li class="fielditem">
+				<label class="label" for="field-title">Title</label>
+				<div class="container">
+					<select id="field-title"
+							name="title"
+							class="small"
+							required
+							title="Please select a title.">
+						<!--option value="" disabled selected>Title</option-->
+						<option value="Mr">Mr</option>
+						<option value="Mrs">Mrs</option>
+					</select>
+					<div id="status-title" role="status"></div>
+				</div>
+			</li>
+			<li class="fielditem">
+				<label class="label" for="field-firstname">First Name</label>
+				<div class="container">
+					<input id="field-firstname"
+							name="firstname"
+							type="text"
+							class="textbox"
+							required
+							pattern="[A-Za-z]+"
+							title="Letters only, no spaces or special characters."
+							inputmode="latin-name"
+							maxlength="50"
+							autocomplete="on"
+							aria-controls="status-firstname" />
+					<div id="status-firstname" role="status"></div>
+				</div>
+			</li>
+			<li class="fielditem">
+				<label class="label" for="field-lastname">Last Name</label>
+				<div class="container">
+					<input id="field-lastname"
+							name="lastname"
+							type="text"
+							class="textbox"
+							required
+							pattern="[A-Za-z]+"
+							title="Letters only, no spaces or special characters."
+							inputmode="latin-name"
+							maxlength="50"
+							autocomplete="on"
+							aria-controls="status-lastname" />
+					<div id="status-lastname" role="status"></div>
+				</div>
+			</li>
+			<li class="fielditem">
+				<fieldset title="You must be over 18.">
+					<legend class="label" id="label-dob">Date of Birth</legend>
+					<div class="container">
+						<select id="field-dob-day"
+								name="dob-day"
+								required
+								title="Please select a day."
+								aria-controls="status-dob"
+								aria-label="Day"
+								aria-labelledby="label-dob">
+							<option value="" disabled selected>Day</option>
+							<option value="1">01</option>
+							<option value="31">31</option>
+						</select>
+						<select id="field-dob-month"
+								name="dob-month"
+								required
+								title="Please select a month."
+								aria-controls="status-dob"
+								aria-label="Month"
+								aria-labelledby="label-dob">
+							<option value="" disabled selected>Month</option>
+							<option value="1">01</option>
+							<option value="12">12</option>
+						</select>
+						<select id="field-dob-year"
+								name="dob-year"
+								required
+								title="Please select a year."
+								aria-controls="status-dob"
+								aria-label="Year"
+								aria-labelledby="label-dob">
+							<option value="" disabled selected>Year</option>
+							<option value="1900">1900</option>
+							<option value="1996">1996</option>
+						</select>
+						<div id="status-dob" role="status"></div>
+					</div>
+				</fieldset>
+			</li>
+			<li class="fielditem">
+				<label class="label" for="field-currency">Currency</label>
+				<div class="container">
+					<select id="field-currency"
+							name="currency"
+							required
+							title="Please select your currency.">
+						<!--option value="" disabled selected>Currency</option-->
+						<option value="GBP">GBP Pound Sterling £</option>
+						<option value="USD">USD US Dollar $</option>
+					</select>
+					<div id="status-currency" role="status"></div>
+				</div>
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset spellcheck="false">
+		<ol>
+			<li class="fielditem">
+				<label class="label" for="field-username">Username</label>
+				<div class="container">
+					<input id="field-username"
+							name="username"
+							type="text"
+							class="textbox"
+							required
+							pattern="^[a-zA-Z][a-zA-Z0-9-_\.]*$"
+							title="Letters, numbers and - _ . characters only, beginning with a letter."
+							inputmode="verbatim"
+							data-minlength="2"
+							maxlength="20"
+							autocomplete="off"
+							aria-controls="status-username" />
+					<!--button type="button">Check</button-->
+					<div id="status-username" role="status"></div>
+				</div>
+			</li>
+			<li class="fielditem">
+				<label class="label" for="field-email">Email</label>
+				<div class="container">
+					<input id="field-email"
+							name="email"
+							type="email"
+							class="textbox"
+							required
+							title="Please enter a valid email address."
+							maxlength="50"
+							autocomplete="on"
+							aria-controls="status-email" />
+					<div id="status-email" role="status"></div>
+				</div>
+			</li>
+			<li class="fielditem">
+				<label class="label" for="field-password">Password</label>
+				<div class="container">
+					<input id="field-password"
+							name="password"
+							type="password"
+							class="textbox"
+							required
+							pattern="^(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*$"
+							title="Must contain uppercase and lowercase letters, and at least one number."
+							inputmode="verbatim"
+							data-confirm="field-password-confirm"
+							data-minlength="8"
+							maxlength="50"
+							autocomplete="off"
+							aria-controls="status-password" />
+					<div id="status-password" role="status"></div>
+				</div>
+			</li>
+			<li class="fielditem">
+				<label class="label" for="field-password-confirm">Confirm Password</label>
+				<div class="container">
+					<input id="field-password-confirm"
+							name="password-confirm"
+							type="password"
+							class="textbox"
+							required
+							title="Please re-enter your password."
+							inputmode="verbatim"
+							data-confirm-primary="field-password"
+							maxlength="50"
+							autocomplete="off"
+							aria-controls="status-password-confirm" />
+					<div id="status-password-confirm" role="status"></div>
+				</div>
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset spellcheck="false">
+		<ol>
+			<li class="fielditem">
+				<label class="label" for="field-test1">Test 1</label>
+				<div class="container">
+					<input id="field-test1"
+							name="test1"
+							type="text"
+							class="textbox"
+							title="Test 1 title."
+							data-minlength="2"
+							maxlength="20"
+							autocomplete="off"
+							aria-controls="status-test1" />
+					<div id="status-test1" role="status"></div>
+				</div>
+			</li>
+			<li class="fielditem">
+				<label class="label" for="field-test2">Test 2</label>
+				<div class="container">
+					<select id="field-test2"
+							name="test2"
+							required
+							title="Test 2 title."
+							aria-controls="status-test2">
+						<option value="" disabled selected>Test 2</option>
+						<option value="1">Value 1</option>
+						<option value="2">Value 2</option>
+					</select>
+					<div id="status-test2" role="status"></div>
+				</div>
+			</li>
+			<li class="fielditem">
+				<fieldset titley="Test 3 and 4 title.">
+					<legend class="label" id="label-test3and4">Tests 3 and 4</legend>
+					<div class="container">
+						<input id="field-test3"
+								name="test3"
+								type="text"
+								class="textbox"
+								required
+								title="Test 3 title."
+								data-minlength="2"
+								maxlength="20"
+								autocomplete="off"
+								aria-controls="status-test3and4"
+								aria-label="Test 3"
+								aria-labelledby="label-test3and4" />
+						<input id="field-test4"
+								name="test4"
+								type="text"
+								class="textbox"
+								title="Test 4 title."
+								data-minlength="2"
+								maxlength="20"
+								autocomplete="off"
+								aria-controls="status-test3and4"
+								aria-label="Test 4"
+								aria-labelledby="label-test3and4" />
+						<div id="status-test3and4" role="status"></div>
+					</div>
+				</fieldset>
+			</li>
+			<!--li class="fielditem">
+				<fieldset titley="Test 5 and 6 title.">
+					<legend id="label-test567">Tests 5, 6 and 7</legend>
+					<select id="field-test5"
+							name="test5"
+							required
+							title="Test 5 title."
+							aria-controls="status-test567"
+							aria-label="Test 6"
+							aria-labelledby="label-test567">
+						<option value="" disabled selected>Test 5</option>
+						<option value="1">Value 1</option>
+						<option value="2">Value 2</option>
+					</select>
+					<input id="field-test6"
+							name="test6"
+							type="text"
+							class="textbox"
+							required
+							title="Test 6 title."
+							data-minlength="2"
+							maxlength="20"
+							autocomplete="off"
+							aria-controls="status-test567"
+							aria-label="Test 6"
+							aria-labelledby="label-test567" />
+					<input id="field-test7"
+							name="test7"
+							type="text"
+							class="textbox"
+							title="Test 7 title."
+							data-minlength="2"
+							maxlength="20"
+							autocomplete="off"
+							aria-controls="status-test567"
+							aria-label="Test 7"
+							aria-labelledby="label-test567" />
+					<div id="status-test567" role="status"></div>
+				</fieldset>
+			</li-->
+			<li class="fielditem">
+				<fieldset title="Test 8 title.">
+					<legend class="label" id="label-test8">Test 8</legend>
+					<div class="container">
+						<input id="field-test8"
+								name="test8"
+								title="Test 8 title."
+								required
+								aria-controls="status-test8"
+								type="checkbox"
+								value="value"
+								checked
+								indeterminatey />
+						<label for="field-test8">Test 8</label>
+						<input id="field-test8a"
+								name="test8a"
+								title="Test 8a title."
+								required
+								aria-controls="status-test8"
+								type="checkbox"
+								value="value"
+								indeterminatey />
+						<label for="field-test8a">Test 8a</label>
+						<div id="status-test8" role="status"></div>
+					</div>
+				</fieldset>
+			</li>
+			<li class="fielditem">
+				<fieldset titley="Test 9 and 10 title.">
+					<legend class="label" id="label-test9and10">Tests 9 and 10</legend>
+					<div class="container">
+						<input id="field-test9"
+								name="test9and10"
+								title="Test 9 title."
+								required
+								aria-controls="status-test9and10"
+								type="radio"
+								value="value"
+								checked />
+						<label for="field-test9">Test 9</label>
+						<input id="field-test10"
+								name="test9and10"
+								title="Test 10 title."
+								required
+								aria-controls="status-test9and10"
+								type="radio"
+								value="value"
+								checked />
+						<label for="field-test10">Test 10</label>
+						<div id="status-test9and10" role="status"></div>
+					</div>
+				</fieldset>
+			</li>
+			<li class="fielditem">
+				<fieldset class="multi-fieldy" title="Test 11 title.">
+					<label class="label" for="field-test11-day">Test 11</label>
+					<div class="container">
+						<label class="textbox">
+							<input id="field-test11-day"
+									name="test11-day"
+									title="Test 11 (day) title."
+									required
+									aria-controls="status-test11"
+									aria-label="Day"
+									aria-labelledbyy="label-test11"
+									type="number"
+									autocomplete="on"
+									maxlength="2"
+									max="31"
+									min="1"
+									list="list-test11-day"
+									pattern="0?[1-9]|[12][0-9]|3[01]"
+									placeholder="DD"
+									data-leading="0"
+									size="2"
+									step="1" />
+							<datalist id="list-test11-day">
+								<option>01</option> <!-- value instead? -->
+								<option>31</option>
+							</datalist>
+							<span class="delim">/</span>
+							<input id="field-test11-month"
+									name="test11-month"
+									title="Test 11 (month) title."
+									required
+									aria-controls="status-test11"
+									aria-label="Month"
+									aria-labelledbyy="label-test11"
+									type="number"
+									autocomplete="on"
+									maxlength="2"
+									max="12"
+									min="1"
+									list="list-test11-month"
+									pattern="0?[1-9]|1[0-2]"
+									placeholder="MM"
+									data-leading="0"
+									size="2"
+									step="1" />
+							<datalist id="list-test11-month">
+								<option value="01">Jan</option>
+								<option value="12">Dec</option>
+							</datalist>
+							<span class="delim">/</span>
+							<input id="field-test11-year"
+									name="test11-year"
+									title="Test 11 (year) title."
+									required
+									aria-controls="status-test11"
+									aria-label="Year"
+									aria-labelledbyy="label-test11"
+									type="number"
+									autocomplete="on"
+									maxlength="4"
+									max="1996"
+									min="1900"
+									pattern="19([0-8]\d|9[0-6])"
+									placeholder="YYYY"
+									data-leading="19"
+									size="4"
+									step="1" />
+						</label>
+						<!--label for="field-test11-day" class="multi-field-label"></label-->
+						<div id="status-test11" role="status"></div>
+					</div>
+				</fieldset>
+			</li>
+			<li class="fielditem">
+				<fieldset class="multi-fieldy" title="Test 12 title.">
+					<label class="label" for="field-test12-day">Test 12</label>
+					<div class="container">
+						<label class="textbox">
+							<input id="field-test12-day"
+									name="test12-day"
+									title="Test 12 (day) title."
+									required
+									aria-controls="status-test12"
+									aria-label="Day"
+									aria-labelledbyy="label-test12"
+									type="text"
+									autocomplete="on"
+									inputmode="numeric"
+									maxlength="2"
+									list="list-test12-day"
+									pattern="0?[1-9]|[12][0-9]|3[01]"
+									placeholder="DD"
+									data-leading="0"
+									size="2" />
+							<datalist id="list-test12-day">
+								<option>01</option> <!-- value instead? -->
+								<option>31</option>
+							</datalist>
+							<span class="delim">/</span>
+							<input id="field-test12-month"
+									name="test12-month"
+									title="Test 12 (month) title."
+									required
+									aria-controls="status-test12"
+									aria-label="Month"
+									aria-labelledbyy="label-test12"
+									type="text"
+									autocomplete="on"
+									inputmode="numeric"
+									maxlength="2"
+									list="list-test12-month"
+									pattern="0?[1-9]|1[0-2]"
+									placeholder="MM"
+									data-leading="0"
+									size="2" />
+							<datalist id="list-test12-month">
+								<option value="01">Jan</option>
+								<option value="12">Dec</option>
+							</datalist>
+							<span class="delim">/</span>
+							<input id="field-test12-year"
+									name="test12-year"
+									title="Test 12 (year) title."
+									required
+									aria-controls="status-test12"
+									aria-label="Year"
+									aria-labelledbyy="label-test12"
+									type="test"
+									autocomplete="on"
+									inputmode="numeric"
+									maxlength="4"
+									pattern="19([0-8]\d|9[0-6])"
+									placeholder="YYYY"
+									data-leading="19"
+									size="4" />
+						</label>
+						<!--label for="field-test12-day" class="multi-field-label"></label-->
+						<div id="status-test12" role="status"></div>
+					</div>
+				</fieldset>
+			</li>
+			<li class="fielditem">
+				<label class="label" class="label" for="field-test13">Test 13</label>
+				<div class="container">
+					<label class="textbox">
+						<input id="field-test13"
+								name="test13"
+								type="text"
+								required
+								pattern="(0?[1-9]|[12][0-9]|3[01])\s/\s(0?[1-9]|1[0-2])\s/\s(19([0-8]\d|9[0-6]))"
+								data-mask="09 / 09 / 9999"
+								data-mask-placeholder="DD / MM / YYYY"
+								title="Please use the format DD / MM / YYYY (you must be over 18)."
+								inputmode="numeric"
+								maxlength="14"
+								autocomplete="off"
+								aria-controls="status-test13" />
+						<!--span class="mask-placeholder">DD / MM / YYYY</span-->
+					</label>
+					<div id="status-test13" role="status"></div>
+				</div>
+			</li>
+			<li class="fielditem">
+				<label class="label" for="field-test14">Test 14</label>
+				<div class="container">
+					<input id="field-test14"
+							name="test14"
+							type="date"
+							class="textbox"
+							required
+							title="You must be over 18."
+							autocomplete="off"
+							aria-controls="status-test14" />
+					<div id="status-test14" role="status"></div>
+				</div>
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset>
+		<button type="submit">Submit</button>
+		<button type="reset">Reset</button>
+	</fieldset>
+</form>
+
+</main>
+<script src="scripts/main.js"></script>
+</body>
+</html>

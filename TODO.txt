@@ -1,0 +1,89 @@
+TODO
+
+checkValidity() ?
+without skin and without css
+.labels when supported
+clear (x) button
+autosave???
+indeterminate styling
+valid not focus span colour???
+
+other ms meta tags
+
+check attributes for fieldset, form, legend, label, datalist, button
+
+remove window true from some respond to widths
+
+settimeouts in event fns?
+
+separate .submitted,.invalid and add in stuff below
+
+invalid field - hover / focus
+
+invalid class on field-item go back to empty get green indicator not red or empty
+
+use space key in masked input doesnt pass delim all the way
+
+moz-text-decoration-color: aqua;
+  -moz-text-decoration-line: overline;
+  -moz-text-decoration-style: wavy;
+
+  SVG title, desc, role?
+
+
+mask placeholder BELOW input ?
+
+have any number in mask, and if doesn't match val then is used as leading, have to use non numerical chars in mask e.g. -/+/* alpha/num/alphanum
+
+ul/li in status - margin below like p ?
+
+remove from errors list when valid?
+include div.msg <details> ?
+IE9
+how to build site?
+github, tests, grunt, bb/react
+use web components?
+terminology - bricks?
+summary of errors required?
+coding conventions for styleguide
+set custom error - 2 paragraphs?
+validate!
+console errors
+firefox, ie10
+multiple msgs from all fields in fieldset in status
+
+checkboxes don't have border
+
+leave a field empty then go back - everything but first status is wrong!!!
+
+Dots go green when go back to empty!!!
+
+firefox - Please match the requested format: Please use the format DD / MM / YYYY (you must be over 18)...
+
+multi-line labels L & R
+
+TEST ON IE 11 at home !!!!
+
+password idividual character requirements dots
+dob (one field) restriction on number values?
+
+
+bug for test 5&6 (status and error list)
+event delegation & no fns inloops
+now change to empty circle when go to new dob field
+list of elements/attributes
+radio/check and label switchable between one per line or all on single line, wrap these in fieldset or not if don't require legend ?
+
+use two fns for check validity and update status?
+Cesare's input
+
+must be between x and x characters (count num chars minus space(s))
+fieldset over two or more lines e.g. checkboxes
+
+JS - stuff in strings to vars? maxlength as well?
+
+remove pattern for names
+
+inline svg (inline sprite?) - position absolute over select etc.
+
+convert all spaces to tabs - sublime and notepad (get sublime on windows)

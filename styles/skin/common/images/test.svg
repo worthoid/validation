@@ -1,0 +1,48 @@
+
+<svg id="test" width="36" height="36" viewBox="0 0 36 36" version="1.1"
+		xmlns="http://www.w3.org/2000/svg"
+		xmlns:xlink="http://www.w3.org/1999/xlink">
+	<style>
+		circle {
+			fill: #008000;
+			transition: fill 250ms;
+		}
+
+		.error circle {
+			fill: #c00;
+		}
+	</style>
+
+	<script>
+		document.getElementById('test').addEventListener('click', function () {
+			if (this.classList.contains('error')) {
+				this.classList.remove('error');
+				document.getElementById('to-check').beginElement();
+			} else {
+				this.classList.add('error');
+				document.getElementById('to-cross').beginElement();
+			}
+		}, false);
+	</script>
+
+	<defs>
+		<linearGradient id="grad" gradientUnits="userSpaceOnUse">
+			<stop offset="0" stop-color="#fff" />
+		</linearGradient>
+	</defs>
+
+	<circle cx="18" cy="18" r="14" />
+
+	<path d="m11.5,20l4.5,3.5m0,0l7.5,-11.5" fill="none" stroke="url(#grad)"
+			stroke-linecap="round" stroke-linejoin="round" stroke-width="2">
+		<animate id="to-check" attributeName="d" attributeType="XML"
+				from="m12,12l12,12m-12,0l12,-12"
+				to="m11.5,20l4.5,3.5m0,0l7.5,-11.5"
+				dur="250ms" begin="indefinite" fill="freeze" />
+
+		<animate id="to-cross" attributeName="d" attributeType="XML"
+				from="m11.5,20l4.5,3.5m0,0l7.5,-11.5"
+				to="m12,12l12,12m-12,0l12,-12"
+				dur="250ms" begin="indefinite" fill="freeze" />
+	</path>
+</svg>

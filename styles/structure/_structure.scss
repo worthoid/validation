@@ -1,0 +1,376 @@
+
+@import "mixins";
+
+// Grid
+
+$grid-height: 24px;
+$grid-width: 24px;
+
+$column-width: $grid-width * 6; // 144px
+$column-width-large: $grid-width * 7.5; // 180px
+
+$gap-height: $grid-height / 2; // 12px
+$gap-height-section: $grid-height * 1.5; // 36px
+$gap-width: $grid-width / 2; // 12px
+
+$gutter-width-phone-portrait: 10px;
+$gutter-width: $grid-width / 2; // 12px
+$gutter-width-large: $grid-width * 0.75; // 18px
+
+$columns-2-width: $column-width * 2 + $gap-width; // 300px
+$columns-3-width: $column-width * 3 + $gap-width * 2; // 456px
+$columns-2-width-large: $column-width-large * 2 + $gap-width; // 372px
+$columns-3-width-large: $column-width-large * 3 + $gap-width * 2; // 564px
+$columns-4-width-large: $column-width-large * 4 + $gap-width * 3; // 756px
+$columns-5-width-large: $column-width-large * 5 + $gap-width * 4; // 948px
+$columns-6-width-large: $column-width-large * 6 + $gap-width * 5; // 1140px
+
+$breakpoint-columns-2: $columns-2-width + $gutter-width-phone-portrait * 2; // 320px
+$breakpoint-columns-3: $columns-3-width + $gutter-width * 2; // 480px
+$breakpoint-columns-3-large: $columns-3-width-large + $gutter-width-large * 2; // 600px
+$breakpoint-columns-4-large: $columns-4-width-large + $gutter-width-large * 2; // 792px
+$breakpoint-columns-5-large: $columns-5-width-large + $gutter-width-large * 2; // 984px
+$breakpoint-columns-6-large: $columns-6-width-large + $gutter-width-large * 2; // 1176px
+
+// Layers
+
+$z-index-top: 100;
+
+// Padding
+
+$padding-height: $grid-height / 4;
+$padding-width: $grid-width / 4;
+
+// Text
+
+$font-size: 100%; // 16px
+$font-size-small: 12px;
+
+$line-height: 1.125; // 18px
+
+$text-height: $grid-height;
+
+// Forms
+
+$button-width: $grid-width * 3;
+
+$form-width-large: $columns-3-width-large;
+
+$field-height: $grid-height * 1.5;
+$field-width-large: $columns-2-width-large;
+$field-width-min: $grid-width * 3;
+
+$input-width: $grid-width * 1.5;
+
+$label-width-large: $form-width-large - $field-width-large - $gap-width;
+
+$status-width-max-large: $columns-2-width-large;
+
+/* Browser specific, hacks etc. */
+
+.textbox {
+	::-webkit-calendar-picker-indicator,
+	::-webkit-inner-spin-button,
+	::-webkit-outer-spin-button {
+		display: none;
+	}
+}
+
+/* Main */
+
+body {
+	font-size: $font-size;
+	line-height: $line-height;
+	//min-height: 100vh;
+}
+
+main {
+	margin: 0 auto;
+
+	@include respond-to-width(0, $breakpoint-columns-3 - 1, true) {
+		padding: $grid-height / 2 $gutter-width-phone-portrait;
+		width: $columns-2-width;
+	}
+
+	@include respond-to-width($breakpoint-columns-3, $breakpoint-columns-3-large - 1, true) {
+		padding: $grid-height / 2 $gutter-width;
+		width: $columns-3-width;
+	}
+
+	@include respond-to-width($breakpoint-columns-3-large, null, true) {
+		padding: $grid-height * 0.75 $gutter-width-large;
+		width: $columns-5-width-large;
+	}
+}
+
+/* Text */
+
+p {
+	//hyphens: auto;
+	margin: 0;
+	//overflow-wrap: break-word;
+	//word-break: break-all;
+
+	&:not(:last-child) {
+		margin-bottom: $gap-height;
+	}
+}
+
+/* Forms */
+
+button,
+input[type="checkbox"],
+input[type="radio"],
+select,
+.textbox {
+	height: $field-height;
+}
+
+input,
+label.textbox {
+	@include box-sizing(border-box);
+}
+
+input + label,
+.field-label {
+	line-height: $text-height;
+	margin-bottom: ($field-height - $text-height) / 2;
+	margin-top: ($field-height - $text-height) / 2;
+}
+
+.mask-placeholder,
+.textbox {
+	padding-left: $padding-width;
+	padding-right: $padding-width;
+}
+
+label.textbox {
+	line-height: $field-height;
+	position: relative;
+
+	&:not([disabled]) {
+		cursor: text;
+	}
+
+	input,
+	.field-delim {
+		float: left;
+	}
+
+	input[data-mask-placeholder],
+	.mask-placeholder {
+		//word-spacing: 0.5em;
+	}
+
+	input {
+		border: none 0;
+		height: 100%;
+		line-height: initial;
+		padding-left: 0;
+		padding-right: 0;
+
+		&:not(:first-child) {
+			margin-left: $padding-width;
+		}
+
+		&[size="2"] {
+			width: 2em;
+		}
+
+		&[size="4"] {
+			width: 4em;
+		}
+	}
+
+	.mask-placeholder {
+		left: 0;
+		pointer-events: none;
+		position: absolute;
+		right: 0;
+		white-space: pre-wrap;
+
+		span {
+			visibility: hidden;
+		}
+	}
+}
+
+.field-small {
+	min-width: $field-width-min;
+}
+
+form {
+	@include respond-to-width($breakpoint-columns-3-large, null, true) {
+		width: $form-width-large;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: $gap-height;
+	}
+
+	> fieldset:not(:last-child) {
+		margin-bottom: $gap-height-section;
+	}
+}
+
+fieldset {
+	> ol,
+	> ul {
+		list-style: none;
+		padding: 0;
+	}
+}
+
+.field-item {
+	@include respond-to-width($breakpoint-columns-3-large, null, true) {
+		@include clearfix;
+	}
+
+	&:not(:last-child) {
+		margin-bottom: $gap-height;
+	}
+
+	.field-label {
+		@include respond-to-width($breakpoint-columns-3-large, null, true) {
+			float: left;
+			text-align: right;
+			width: $label-width-large;
+		}
+	}
+
+	.field-container {
+		@include respond-to-width($breakpoint-columns-3-large, null, true) {
+			float: left;
+			margin-left: $gap-width;
+			width: $field-width-large;
+		}
+	}
+}
+
+.field-container {
+	position: relative;
+
+	@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+		@include clearfix;
+	}
+
+	button,
+	input[type="checkbox"],
+	input[type="radio"],
+	input + label,
+	select,
+	.textbox {
+		float: left;
+
+		&:not(:first-child) {
+			margin-left: $gap-width;
+		}
+	}
+
+	select,
+	.textbox {
+		&.field-small:only-of-type {
+			max-width: 100%;
+		}
+
+		&:only-of-type {
+			@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+				width: 100%;
+			}
+
+			&:not(.field-small) {
+				@include respond-to-width($breakpoint-columns-3-large, null, true) {
+					width: $field-width-large;
+				}
+			}
+		}
+
+		&:not(.field-small) {
+			&:first-of-type:nth-last-of-type(2),
+			&:first-of-type:nth-last-of-type(2) ~ select,
+			&:first-of-type:nth-last-of-type(2) ~ .textbox {
+				@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+					width: calc((100% - #{$gap-width}) / 2);
+				}
+
+				@include respond-to-width($breakpoint-columns-3-large, null, true) {
+					width: ($field-width-large - $gap-width) / 2;
+				}
+			}
+
+			&:first-of-type:nth-last-of-type(3),
+			&:first-of-type:nth-last-of-type(3) ~ select,
+			&:first-of-type:nth-last-of-type(3) ~ .textbox {
+				@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+					width: calc((100% - #{$gap-width} * 2) / 3);
+				}
+
+				@include respond-to-width($breakpoint-columns-3-large, null, true) {
+					width: ($field-width-large - $gap-width * 2) / 3;
+				}
+			}
+		}
+	}
+
+	button {
+		width: $button-width;
+	}
+
+	&.has-button .textbox:only-of-type {
+		width: $field-width-large - $gap-width - $button-width;
+	}
+
+	[role="status"] {
+		@include box-sizing(border-box);
+		display: none;
+		font-size: $font-size-small;
+		position: absolute;
+
+		@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+			top: 100%;
+			width: 100%;
+			z-index: 1;
+		}
+
+		@include respond-to-width($breakpoint-columns-3-large, null, true) {
+			max-width: $status-width-max-large;
+			@include transform(translate($field-width-large + $gap-width, calc(#{$field-height} / 2 - 50%)));
+		}
+
+		&:empty {
+
+		}
+
+		ul {
+			padding: $padding-height $padding-width;
+		}
+
+		li {
+			line-height: $grid-height * 0.75;
+			padding: $grid-height / 8 0;
+		}
+	}
+
+	input:focus,
+	select:focus,
+	.focus {
+		~ [role="status"] {
+			display: block;
+		}
+	}
+}
+
+.form-errors {
+	&:not(:empty) {
+		margin-bottom: $gap-height-section;
+		padding: $padding-height $padding-width;
+	}
+
+	> p {
+		margin-bottom: $grid-height / 4;
+	}
+}
+
+output.form-errors {
+	display: block;
+}

@@ -1,0 +1,223 @@
+<!doctype html>
+<html lang="en">
+<head>
+	<meta charset="utf-8" />
+	<title>Registration</title>
+	<meta name="description" content="Registration page." />
+
+	<meta name="viewport" content="width=device-width, initial-scale=1, minimum-scale=1, minimal-ui" />
+
+	<meta name="apple-mobile-web-app-title" content="Registration" />
+
+	<meta name="application-name" content="Registration" />
+	<meta name="msapplication-starturl" content="register.html?pinned=true" />
+	<meta name="msapplication-TileColor" content="#fff" />
+	<meta name="msapplication-TileImage" content="styles/skin/site/images/device/icons/72x72@2x.png" />
+
+	<link rel="shortcut icon" href="styles/skin/site/images/device/icons/favicon.ico" />
+	<link rel="icon" href="styles/skin/site/images/device/icons/favicon.png" />
+
+	<link rel="apple-touch-icon-precomposed" href="styles/skin/site/images/device/icons/57x57.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="72x72" href="styles/skin/site/images/device/icons/72x72.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="76x76" href="styles/skin/site/images/device/icons/76x76.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="114x114" href="styles/skin/site/images/device/icons/57x57@2x.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="120x120" href="styles/skin/site/images/device/icons/60x60@2x.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="144x144" href="styles/skin/site/images/device/icons/72x72@2x.png" />
+	<link rel="apple-touch-icon-precomposed" sizes="152x152" href="styles/skin/site/images/device/icons/76x76@2x.png" />
+
+	<link rel="stylesheet" href="styles/style.css" />
+</head>
+
+<body>
+<noscript></noscript>
+<main>
+<form>
+	<output class="form-errors" role="alert"></output>
+	<fieldset spellcheck="false">
+		<ol>
+			<li class="field-item">
+				<label class="field-label" for="field-title">Title</label>
+				<div class="field-container">
+					<select id="field-title"
+							name="title"
+							class="field-small"
+							required
+							title="Please select a title.">
+						<option disabled selected value="">Title</option>
+						<option value="mr">Mr</option>
+						<option value="mrs">Mrs</option>
+					</select>
+				</div>
+			</li>
+			<li class="field-item">
+				<label class="field-label" for="field-firstname">First Name</label>
+				<div class="field-container">
+					<input id="field-firstname"
+							name="firstname"
+							class="textbox"
+							type="text"
+							aria-controls="status-firstname"
+							autocomplete="on"
+							maxlength="50"
+							pattern="[A-Za-z]+"
+							required
+							title="Letters only, no spaces or special characters." />
+					<div id="status-firstname" role="status"></div>
+				</div>
+			</li>
+			<li class="field-item">
+				<label class="field-label" for="field-lastname">Last Name</label>
+				<div class="field-container">
+					<input id="field-lastname"
+							name="lastname"
+							class="textbox"
+							type="text"
+							aria-controls="status-lastname"
+							autocomplete="on"
+							maxlength="50"
+							pattern="[A-Za-z]+"
+							required
+							title="Letters only, no spaces or special characters." />
+					<div id="status-lastname" role="status"></div>
+				</div>
+			</li>
+			<li class="field-item">
+				<label class="field-label" for="field-dob">Date of Birth</label>
+				<div class="field-container">
+					<label class="textbox">
+						<input id="field-dob"
+								name="dob"
+								type="text"
+								aria-controls="status-dob"
+								autocomplete="on"
+								maxlength="14"
+								pattern="(0?[1-9]|[12][0-9]|3[01])\s/\s(0?[1-9]|1[0-2])\s/\s(19([0-8]\d|9[0-6]))"
+								required
+								title="Please use the format DD / MM / YYYY (you must be over 18)."
+								data-mask="09 / 09 / 9999"
+								data-mask-placeholder="DD / MM / YYYY" />
+					</label>
+					<div id="status-dob" role="status"></div>
+				</div>
+			</li>
+			<li class="field-item">
+				<fieldset>
+					<legend class="field-label">Gender</legend>
+					<div class="field-container">
+						<input id="field-gender-male"
+								name="gender"
+								type="radio"
+								checked
+								required
+								value="male" />
+						<label for="field-gender-male">Male</label>
+						<input id="field-gender-female"
+								name="gender"
+								type="radio"
+								required
+								value="female" />
+						<label for="field-gender-female">Female</label>
+					</div>
+				</fieldset>
+			</li>
+			<li class="field-item">
+				<fieldset>
+					<legend class="field-label">Currency</legend>
+					<div class="field-container">
+						<input id="field-currency-pounds"
+								name="currency"
+								type="radio"
+								checked
+								required
+								value="pounds" />
+						<label for="field-currency-pounds">UK £</label>
+						<input id="field-currency-euros"
+								name="currency"
+								type="radio"
+								required
+								value="euros" />
+						<label for="field-currency-euros">Euro €</label>
+					</div>
+				</fieldset>
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset spellcheck="false">
+		<ol>
+			<li class="field-item">
+				<label class="field-label" for="field-username">Username / Chatname</label>
+				<div class="field-container">
+					<input id="field-username"
+							name="username"
+							class="textbox"
+							type="text"
+							aria-controls="status-username"
+							autocomplete="off"
+							data-minlength="2"
+							maxlength="20"
+							pattern="[a-zA-Z][a-zA-Z0-9-_\.]*"
+							required
+							title="Letters, numbers and - _ . characters only, beginning with a letter." />
+					<div id="status-username" role="status"></div>
+				</div>
+			</li>
+			<li class="field-item">
+				<label class="field-label" for="field-password">Password</label>
+				<div class="field-container">
+					<input id="field-password"
+							name="password"
+							class="textbox"
+							type="password"
+							aria-controls="status-password"
+							autocomplete="off"
+							data-confirm="field-password-confirm"
+							data-minlength="8"
+							maxlength="50"
+							pattern="(?=.*\d)(?=.*[a-z])(?=.*[A-Z])(?!.*\s).*"
+							required
+							title="Must contain uppercase and lowercase letters, and at least one number." />
+					<div id="status-password" role="status"></div>
+				</div>
+			</li>
+			<li class="field-item">
+				<label class="field-label" for="field-password-confirm">Confirm Password</label>
+				<div class="field-container">
+					<input id="field-password-confirm"
+							name="password-confirm"
+							class="textbox"
+							type="password"
+							aria-controls="status-password-confirm"
+							autocomplete="off"
+							data-confirm-primary="field-password"
+							maxlength="50"
+							required
+							title="Please re-enter your password." />
+					<div id="status-password-confirm" role="status"></div>
+				</div>
+			</li>
+			<li class="field-item">
+				<label class="field-label" for="field-email">Email</label>
+				<div class="field-container">
+					<input id="field-email"
+							name="email"
+							class="textbox"
+							type="email"
+							aria-controls="status-email"
+							autocomplete="on"
+							maxlength="50"
+							required
+							title="Please enter a valid email address." />
+					<div id="status-email" role="status"></div>
+				</div>
+			</li>
+		</ol>
+	</fieldset>
+	<fieldset>
+		<button type="submit">Submit</button>
+		<button type="reset">Reset</button>
+	</fieldset>
+</form>
+</main>
+<script src="scripts/main.js"></script>
+</body>
+</html>

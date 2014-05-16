@@ -1,0 +1,20 @@
+
+// ==========================================================================
+// Description.
+//
+// $param	Description
+// ==========================================================================
+@mixin clearfix {
+	// &::before,
+	// &::after {
+	// 	content: "";
+	// 	display: table;
+	// }
+
+	&::after {
+		clear: both;
+
+		content: "";
+		display: block;
+	}
+}

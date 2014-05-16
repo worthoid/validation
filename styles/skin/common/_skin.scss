@@ -1,0 +1,595 @@
+
+@import "mixins";
+
+// Abstract
+
+$colour-widget: #555 !default;
+
+$colour-highlight: #333 !default;
+$colour-highlight-light: #eee !default;
+
+$colour-invalid: #f00 !default;
+$colour-invalid-light: #fee !default;
+
+$colour-valid: #008000 !default;
+$colour-valid-light: #efe !default;
+
+// Common
+
+$transition-duration: 250ms;
+
+// Main
+
+$main-bg: #ccc !default;
+
+// Text
+
+$font-default: sans-serif !default;
+
+$text-colour: #333 !default;
+
+$link-colour: inherit !default;
+$link-colour-active: null !default;
+$link-colour-focus: null !default;
+$link-colour-hover: null !default;
+
+
+$selection-bg: null !default;
+$selection-colour: null !default;
+$selection-opacity: null !default; // set to 1 to override Firefox default if required
+$selection-shadow: null !default;
+
+// Forms
+
+$field-container-bg: #ddd !default; // TESTING ONLY
+$field-container-bg-invalid: null !default; // TESTING ONLY
+
+$field-bg-colour: #fff !default;
+$field-bg-colour-active: null !default;
+$field-bg-colour-focus: null !default;
+$field-bg-colour-hover: $colour-highlight-light !default;
+$field-bg-colour-invalid: $colour-invalid-light !default;
+$field-bg-colour-valid: $colour-valid-light !default;
+
+$field-bg-img-invalid: url(skin/common/images/invalid.svg) !default;
+$field-bg-img-valid: url(skin/common/images/valid.svg) !default;
+$field-bg-img-padding: $grid-width * 1.5 !default;
+
+$field-border-colour: $colour-widget !default;
+$field-border-colour-active: null !default;
+$field-border-colour-focus: $colour-highlight !default;
+$field-border-colour-hover: null !default;
+$field-border-colour-invalid: $colour-invalid !default;
+$field-border-colour-valid: $colour-valid !default;
+
+$field-border-width: 1px !default;
+
+$input-bg-colour: $field-bg-colour !default;
+$input-bg-colour-active: $field-bg-colour-focus !default;
+$input-bg-colour-focus: null !default;
+$input-bg-colour-hover: $field-bg-colour-hover !default;
+$input-bg-colour-invalid: $field-bg-colour-invalid !default;
+$input-bg-colour-valid: $field-bg-colour-valid !default;
+
+$input-border-colour: $field-border-colour !default;
+$input-border-colour-active: null !default;
+$input-border-colour-focus: null !default;
+$input-border-colour-hover: null !default;
+$input-border-colour-invalid: $field-border-colour-invalid !default;
+$input-border-colour-valid: $field-border-colour-valid !default;
+
+$input-bg-colour-checked: $colour-highlight !default;
+$input-bg-colour-checked-active: null !default;
+$input-bg-colour-checked-focus: null !default;
+$input-bg-colour-checked-hover: null !default;
+$input-border-colour-checked: $colour-highlight !default;
+$input-border-colour-checked-active: null !default;
+$input-border-colour-checked-focus: null !default;
+$input-border-colour-checked-hover: null !default;
+
+$input-border-width: 2px !default;
+
+$input-padding: 4px !default;
+
+$input-checkbox-bg-img-checked: url(skin/common/images/check.svg) !default;
+$input-checkbox-border-radius: 3px !default;
+
+$placeholder-colour: #a9a9a9 !default;
+
+$select-bg-img: url(skin/common/images/select.svg) !default;
+$select-bg-img-width: $grid-width !default;
+
+// Status
+
+$status-bg-colour: #eee !default;
+$status-border-colour: #aaa !default;
+$status-border-width: 1px !default;
+
+$status-img-empty-bg: $field-bg-colour !default;
+$status-img-empty-border: $colour-highlight solid 2px !default;
+$status-img-invalid-bg: $colour-invalid !default;
+$status-img-invalid-border: null !default;
+$status-img-valid-bg: $colour-valid !default;
+$status-img-valid-border: null !default;
+
+$status-img-width: $grid-width / 2 !default;
+
+/* Browser specific, hacks etc. */
+
+$moz-select-vertical-padding: 8px;
+
+$tap-highlight-colour: null !default;
+
+body {
+	-webkit-tap-highlight-color: $tap-highlight-colour;
+}
+
+select {
+	align-items: flex-start; // aligns text in Chrome after Firefox line-height fix
+	line-height: $field-height - if($field-border-width, $field-border-width * 2, 0) - $moz-select-vertical-padding * 2; // fix line-height in Firefox
+	padding-bottom: 0;
+	padding-top: $moz-select-vertical-padding; // fix line-height in Firefox
+
+	// hide arrow in Firefox
+	text-indent: 0.01px;
+	text-overflow: "";
+
+	// hide focus outline, keep text visible
+	&:-moz-focusring {
+		color: transparent;
+		text-shadow: 0 0 $text-colour;
+	}
+
+	// hide arrow in IE
+	&::-ms-expand {
+		display: none;
+	}
+}
+
+::-webkit-calendar-picker-indicator {
+	color: $colour-widget;
+}
+
+/* Main */
+
+body {
+	$blue: rgba(0,127,255,0.15);
+	$red: rgba(255,0,0,0.1);
+
+	background: $main-bg;
+	color: $text-colour;
+	font-family: $font-default;
+
+	&.show-columns,
+	&.show-grid {
+		main {
+			position: relative;
+
+			&::after {
+				bottom: 0;
+				content: "";
+				pointer-events: none;
+				position: absolute;
+				top: 0;
+				z-index: $z-index-top;
+			}
+		}
+	}
+
+	&.show-columns main::after {
+		@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+			background-image: linear-gradient(to right, $blue $column-width, transparent $column-width);
+			background-size: $column-width + $gap-width;
+		}
+
+		@include respond-to-width(0, $breakpoint-columns-3 - 1, true) {
+			left: $gutter-width-phone-portrait;
+			right: $gutter-width-phone-portrait;
+		}
+
+		@include respond-to-width($breakpoint-columns-3, $breakpoint-columns-3-large - 1, true) {
+			left: $gutter-width;
+			right: $gutter-width;
+		}
+
+		@include respond-to-width($breakpoint-columns-3-large, null, true) {
+			background-image: linear-gradient(to right, $blue $column-width-large, transparent $column-width-large);
+			background-size: $column-width-large + $gap-width;
+			left: $gutter-width-large;
+			right: $gutter-width-large;
+		}
+	}
+
+	&.show-grid main::after {
+		background-image: linear-gradient(transparent 25%, $blue 25%, $blue 50%, transparent 50%, transparent 75%, $red 75%),
+				linear-gradient(to right, transparent 25%, $blue 25%, $blue 50%, transparent 50%, transparent 75%, $red 75%);
+		background-size: $grid-width $grid-height;
+		left: 0;
+		right: 0;
+	}
+}
+
+/* Text */
+
+a {
+	color: $link-colour;
+	text-decoration: none;
+	transition: color $transition-duration;
+
+	&:hover,
+	&:focus {
+		text-decoration: underline;
+	}
+
+	&:hover {
+		color: $link-colour-hover;
+	}
+
+	&:focus {
+		color: $link-colour-focus;
+	}
+
+	&:active {
+		color: $link-colour-active;
+	}
+}
+
+::selection {
+	background: $selection-bg;
+	color: $selection-colour;
+	opacity: $selection-opacity;
+	text-shadow: $selection-shadow;
+}
+
+/* Forms */
+
+input[type="checkbox"] + label::before,
+input[type="radio"] + label::before,
+select,
+.textbox {
+	transition: background-color $transition-duration, border-color $transition-duration;
+}
+
+input[type="checkbox"],
+input[type="radio"] {
+	opacity: 0;
+	width: $input-width;
+
+	& + label {
+		position: relative;
+
+		&::before {
+			background-color: $input-bg-colour;
+			border: $input-border-colour solid $input-border-width;
+			box-shadow: inset 0 0 0 $input-padding $input-bg-colour;
+			@include box-sizing(border-box);
+			content: "";
+			height: $field-height;
+			left: -($input-width + $gap-width);
+			position: absolute;
+			top: calc(50% - #{$field-height} / 2);
+			width: $input-width;
+		}
+	}
+
+	&:hover + label::before {
+		background-color: $input-bg-colour-hover;
+		border-color: $input-border-colour-hover;
+	}
+
+	&:focus + label::before {
+		background-color: $input-bg-colour-focus;
+		border-color: $input-border-colour-focus;
+	}
+
+	&:active + label::before {
+		background-color: $input-bg-colour-active;
+		border-color: $input-border-colour-active;
+	}
+
+	&:checked {
+		& + label::before {
+			background-color: $input-bg-colour-checked;
+			border-color: $input-border-colour-checked;
+		}
+
+		&:hover + label::before {
+			background-color: $input-bg-colour-checked-hover;
+			border-color: $input-border-colour-checked-hover;
+		}
+
+		&:focus + label::before {
+			background-color: $input-bg-colour-checked-focus;
+			border-color: $input-border-colour-checked-focus;
+		}
+
+		&:active + label::before {
+			background-color: $input-bg-colour-checked-active;
+			border-color: $input-border-colour-checked-active;
+		}
+	}
+}
+
+input[type="checkbox"] {
+	& + label::before {
+		background-origin: border-box;
+		border-radius: $input-checkbox-border-radius;
+	}
+
+	&:checked + label::before {
+		background-image: $input-checkbox-bg-img-checked; // fade out?
+	}
+}
+
+input[type="radio"] + label::before {
+	border-radius: 50%;
+}
+
+select,
+.mask-placeholder,
+.textbox {
+	padding-left: $padding-width - if($field-border-width, $field-border-width, 0);
+}
+
+select,
+.textbox {
+	background-color: $field-bg-colour;
+	background-origin: border-box;
+	background-position: right;
+	background-repeat: no-repeat;
+	@if $field-border-width {
+		border: $field-border-colour solid $field-border-width;
+	} @else {
+		border: none 0;
+	}
+
+	&:hover {
+		background-color: $field-bg-colour-hover;
+		border-color: $field-border-colour-hover;
+	}
+
+	&:focus,
+	&.focus {
+		background-color: $field-bg-colour-focus;
+		border-color: $field-border-colour-focus;
+	}
+
+	&:active {
+		background-color: $field-bg-colour-active;
+		border-color: $field-border-colour-active;
+	}
+}
+
+.mask-placeholder,
+.textbox {
+	padding-right: $padding-width - if($field-border-width, $field-border-width, 0);
+}
+
+select {
+	@include appearance(none);
+	background-image: $select-bg-img;
+	border-radius: 0;
+	padding-right: $select-bg-img-width - if($field-border-width, $field-border-width, 0);
+}
+
+label.textbox {
+	line-height: $field-height - if($field-border-width, $field-border-width * 2, 0);
+
+	input {
+		background-color: transparent;
+		transition: background-color $transition-duration;
+	}
+}
+
+@include placeholder($placeholder-colour) {
+	.field-delim,
+	.mask-placeholder {
+		color: $placeholder-colour;
+	}
+}
+
+.field-item {
+	background: $field-container-bg;
+
+	&.invalid {
+		background: $field-container-bg-invalid;
+	}
+
+	&.required .field-label::after {
+		color: #f00;
+		content:"*";
+		//position: absolute;
+	}
+}
+
+.field-container {
+	input + label {
+		&:only-of-type {
+			@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+				width: calc(100% - #{$input-width} - #{$gap-width} - #{$field-bg-img-padding});
+			}
+
+			@include respond-to-width($breakpoint-columns-3-large, null, true) {
+				width: $field-width-large - $input-width - $gap-width - $field-bg-img-padding;
+			}
+		}
+
+		&:first-of-type:nth-last-of-type(2),
+		&:first-of-type:nth-last-of-type(2) ~ label {
+			@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+				width: calc((100% - #{$input-width} * 2 - #{$gap-width} * 3 - #{$field-bg-img-padding}) / 2);
+			}
+
+			@include respond-to-width($breakpoint-columns-3-large, null, true) {
+				width: ($field-width-large - $input-width * 2 - $gap-width * 3 - $field-bg-img-padding) / 2;
+			}
+		}
+
+		&:first-of-type:nth-last-of-type(3),
+		&:first-of-type:nth-last-of-type(3) ~ label {
+			@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+				width: calc((100% - #{$input-width} * 3 - #{$gap-width} * 4 - #{$field-bg-img-padding}) / 3);
+			}
+
+			@include respond-to-width($breakpoint-columns-3-large, null, true) {
+				width: ($field-width-large - $input-width * 3 - $gap-width * 4 - $field-bg-img-padding) / 3;
+			}
+		}
+	}
+
+	[role="status"] {
+		background: $status-bg-colour;
+		display: block;
+		height: 0;
+		opacity: 0;
+		overflow: hidden;
+		transition: opacity $transition-duration;
+
+		@include respond-to-width($breakpoint-columns-3-large, null, true) {
+			@include arrow(left, $grid-width / 3, $status-bg-colour, $status-border-colour, $status-border-width);
+		}
+
+		ul {
+			list-style: none;
+			padding: $padding-height - if($status-border-width, $status-border-width, 0) $padding-width - if($status-border-width, $status-border-width, 0);
+		}
+
+		li {
+			padding-left: $status-img-width + $padding-width;
+			position: relative;
+
+			&::before {
+				border-radius: 50%;
+				@include box-sizing(border-box);
+				content: "";
+				height: 10px;
+				left: ($status-img-width - 10px) / 2;
+				position: absolute;
+				top: ($text-height - 10px) / 2;
+				transition: background-color $transition-duration, border-color $transition-duration;
+				width: 10px;
+			}
+
+			&:not(.valid):not(.invalid)::before {
+				background: $status-img-empty-bg;
+				border: $status-img-empty-border;
+			}
+
+			&.valid::before {
+				background: $status-img-valid-bg;
+				border: $status-img-valid-border;
+			}
+
+			&.invalid::before {
+				background: $status-img-invalid-bg;
+				border: $status-img-invalid-border;
+			}
+		}
+	}
+
+	input:focus,
+	select:focus,
+	.focus {
+		~ [role="status"] {
+			@if $status-border-width {
+				border: $status-border-colour solid $status-border-width;
+			}
+			height: initial;
+			opacity: 1;
+			overflow: initial;
+		}
+	}
+}
+
+.submitted,
+.field-item.invalid {
+	input[type="checkbox"],
+	input[type="radio"] {
+		&:valid,
+		&:invalid {
+			& + label:last-of-type {
+				background-position: right;
+				background-repeat: no-repeat;
+				padding-right: $field-bg-img-padding;
+			}
+		}
+
+		&:valid + label:last-of-type {
+			background-image: $field-bg-img-valid;
+		}
+
+		&:invalid + label:last-of-type {
+			background-image: $field-bg-img-invalid;
+		}
+	}
+
+	select,
+	.textbox {
+		&:valid:focus {
+			background-color: $field-bg-colour-valid;
+			border-color: $field-border-colour-valid;
+		}
+
+		&:invalid {
+			background-color: $field-bg-colour-invalid;
+			border-color: $field-border-colour-invalid;
+		}
+	}
+
+	select {
+		background-position: right $grid-width + $padding-width center, right;
+		padding-right: $select-bg-img-width + $field-bg-img-padding - if($field-border-width, $field-border-width, 0);
+
+		&:valid {
+			background-image: $select-bg-img, $field-bg-img-valid;
+		}
+
+		&:invalid {
+			background-image: $select-bg-img, $field-bg-img-invalid;
+		}
+	}
+
+	.textbox {
+		padding-right: $field-bg-img-padding - if($field-border-width, $field-border-width, 0);
+
+		&:valid {
+			background-image: $field-bg-img-valid;
+		}
+
+		&:invalid {
+			background-image: $field-bg-img-invalid;
+		}
+	}
+}
+
+.field-item.invalid label.textbox {
+	background-color: $field-bg-colour-invalid;
+	background-image: $field-bg-img-invalid;
+	border-color: $field-border-colour-invalid;
+	padding-right: $field-bg-img-padding - if($field-border-width, $field-border-width, 0);
+}
+
+.submitted .field-item:not(.invalid) label.textbox {
+	background-color: $field-bg-colour-valid;
+	background-image: $field-bg-img-valid;
+	border-color: $field-border-colour-valid;
+	padding-right: $field-bg-img-padding - if($field-border-width, $field-border-width, 0);
+}
+
+.form-errors {
+	background: $colour-invalid-light;
+	opacity: 0;
+	transition: opacity $transition-duration;
+
+	&:not(:empty) {
+		@if $field-border-width {
+			border: $colour-invalid solid $field-border-width;
+		}
+		opacity: 1;
+		padding: $padding-height - if($field-border-width, $field-border-width, 0) $padding-width - if($field-border-width, $field-border-width, 0);
+	}
+
+	> p {
+		font-weight: bold;
+	}
+}

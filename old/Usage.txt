@@ -1,0 +1,64 @@
+
+ALL
+
+id - field-name, label-name (LEGEND), status-name
+name - name, required for fields, radio button groups share same name
+title - required for fields, usage instructions or pattern instructions, can be on FIELDSET if requires overall validation msg
+
+class - fielditem, textbox
+
+role - alert, status
+
+FIELDSET/INPUT/SELECT/OPTGROUP/OPTION/BUTTON
+
+disabled - bool
+
+INPUT/SELECT
+
+autofocus - bool
+required - bool
+
+aria-controls - id of status container
+aria-label - if no LABEL element
+aria-labelledby - if labelled by anything other than LABEL, e.g. LEGEND in FIELDSET
+
+INPUT
+
+type - text/password/email/number/checkbox/radio
+autocomplete - on/off - can be on the containing FIELDSET or FORM, only required for types text/password/email/number
+inputmode - text/password type only, verbatim/latin-name/numeric
+maxlength
+spellcheck - true/default/false - required only on type text/password/email - can be on the containing FIELDSET or FORM
+value - required only on checkbox and radio types
+
+checked - bool
+indeterminate - bool?
+list
+max
+min
+pattern
+placeholder
+readonly - bool
+size?
+step
+
+data-confirm - id of confirmation INPUT that must match this one
+data-confirm-primary - id of INPUT that dictates what this confirmation INPUT must match
+data-leading - character to add to left of valid input if not max size e.g. "0" for leading zero
+data-mask e.g. "09 / 09 / 9999", where 0 and 9 denote numeric (0 denotes leading zero is added), A denotes alpha and * alphanumeric
+data-mask-placeholder - "DD / MM / YYYY" - the placeholder text for corresponding mask, must be the same length as the mask
+data-minlength
+
+OPTION
+
+value
+
+selected - bool
+
+LABEL
+
+for - field id
+
+BUTTON
+
+type - submit/reset/button
