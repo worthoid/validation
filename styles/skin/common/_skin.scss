@@ -1,5 +1,5 @@
 
-@import "mixins";
+@import 'mixins';
 
 // Abstract
 
@@ -132,7 +132,7 @@ select {
 
 	// hide arrow in Firefox
 	text-indent: 0.01px;
-	text-overflow: "";
+	text-overflow: '';
 
 	// hide focus outline, keep text visible
 	&:-moz-focusring {
@@ -153,8 +153,8 @@ select {
 /* Main */
 
 body {
-	$blue: rgba(0,127,255,0.15);
-	$red: rgba(255,0,0,0.1);
+	$blue: rgba(0, 127, 255, 0.15);
+	$red: rgba(255, 0, 0, 0.1);
 
 	background: $main-bg;
 	color: $text-colour;
@@ -167,7 +167,7 @@ body {
 
 			&::after {
 				bottom: 0;
-				content: "";
+				content: '';
 				pointer-events: none;
 				position: absolute;
 				top: 0;
@@ -243,15 +243,15 @@ a {
 
 /* Forms */
 
-input[type="checkbox"] + label::before,
-input[type="radio"] + label::before,
+input[type='checkbox'] + label::before,
+input[type='radio'] + label::before,
 select,
 .textbox {
 	transition: background-color $transition-duration, border-color $transition-duration;
 }
 
-input[type="checkbox"],
-input[type="radio"] {
+input[type='checkbox'],
+input[type='radio'] {
 	opacity: 0;
 	width: $input-width;
 
@@ -263,7 +263,7 @@ input[type="radio"] {
 			border: $input-border-colour solid $input-border-width;
 			box-shadow: inset 0 0 0 $input-padding $input-bg-colour;
 			@include box-sizing(border-box);
-			content: "";
+			content: '';
 			height: $field-height;
 			left: -($input-width + $gap-width);
 			position: absolute;
@@ -310,7 +310,7 @@ input[type="radio"] {
 	}
 }
 
-input[type="checkbox"] {
+input[type='checkbox'] {
 	& + label::before {
 		background-origin: border-box;
 		border-radius: $input-checkbox-border-radius;
@@ -321,7 +321,7 @@ input[type="checkbox"] {
 	}
 }
 
-input[type="radio"] + label::before {
+input[type='radio'] + label::before {
 	border-radius: 50%;
 }
 
@@ -397,7 +397,7 @@ label.textbox {
 
 	&.required .field-label::after {
 		color: #f00;
-		content:"*";
+		content: '*';
 		//position: absolute;
 	}
 }
@@ -437,7 +437,7 @@ label.textbox {
 		}
 	}
 
-	[role="status"] {
+	[role='status'] {
 		background: $status-bg-colour;
 		display: block;
 		height: 0;
@@ -461,7 +461,7 @@ label.textbox {
 			&::before {
 				border-radius: 50%;
 				@include box-sizing(border-box);
-				content: "";
+				content: '';
 				height: 10px;
 				left: ($status-img-width - 10px) / 2;
 				position: absolute;
@@ -490,7 +490,7 @@ label.textbox {
 	input:focus,
 	select:focus,
 	.focus {
-		~ [role="status"] {
+		~ [role='status'] {
 			@if $status-border-width {
 				border: $status-border-colour solid $status-border-width;
 			}
@@ -503,8 +503,8 @@ label.textbox {
 
 .submitted,
 .field-item.invalid {
-	input[type="checkbox"],
-	input[type="radio"] {
+	input[type='checkbox'],
+	input[type='radio'] {
 		&:valid,
 		&:invalid {
 			& + label:last-of-type {

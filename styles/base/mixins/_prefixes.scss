@@ -2,7 +2,7 @@
 @mixin text-size-adjust($text-size-adjust) {
 	-ms-text-size-adjust: $text-size-adjust;
 	-webkit-text-size-adjust: $text-size-adjust;
-	text-size-adjust: $text-size-adjust;
+	//text-size-adjust: $text-size-adjust;
 }
 
 @mixin user-select($user-select) {
