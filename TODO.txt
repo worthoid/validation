@@ -10,13 +10,23 @@ valid not focus span colour???
 
 other ms meta tags
 
+output tag for status containers? for attr?
+
+auto advance through form fields?
+
 check attributes for fieldset, form, legend, label, datalist, button
 
 remove window true from some respond to widths
 
 settimeouts in event fns?
 
+img {max-width:100%} ?
+
+:disabled,.disabled {pointer-events: none} ?
+
 separate .submitted,.invalid and add in stuff below
+
+no border/bg for status in mobile view, just list below field (or above field below label?) (transition height?)
 
 invalid field - hover / focus
 
@@ -24,11 +34,15 @@ invalid class on field-item go back to empty get green indicator not red or empt
 
 use space key in masked input doesnt pass delim all the way
 
+catch reset event not button click?
+
+need updateStatus in submit() ?
+
 moz-text-decoration-color: aqua;
   -moz-text-decoration-line: overline;
   -moz-text-decoration-style: wavy;
 
-  SVG title, desc, role?
+  SVG title, desc, role? <?xml version="1.0" encoding="utf-8" standalone="no"?> ?? DOCTYPE ??
 
 
 mask placeholder BELOW input ?
@@ -77,6 +91,10 @@ radio/check and label switchable between one per line or all on single line, wra
 use two fns for check validity and update status?
 Cesare's input
 
+input:target same as focus e.g. show when has been linked to
+
+vis: hidden not opacity: 0 for radio/check?
+
 must be between x and x characters (count num chars minus space(s))
 fieldset over two or more lines e.g. checkboxes
 
@@ -84,6 +102,8 @@ JS - stuff in strings to vars? maxlength as well?
 
 remove pattern for names
 
-inline svg (inline sprite?) - position absolute over select etc.
+inline svg (inline sprite?) - position absolute over select etc. with pointer events none or pseudo cover el
+
+pseudo cover el instead of pointer events none for mask ?
 
 convert all spaces to tabs - sublime and notepad (get sublime on windows)
