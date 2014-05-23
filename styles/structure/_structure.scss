@@ -1,5 +1,5 @@
 
-@import "mixins";
+@import 'mixins';
 
 // Grid
 
@@ -119,8 +119,8 @@ p {
 /* Forms */
 
 button,
-input[type="checkbox"],
-input[type="radio"],
+input[type='checkbox'],
+input[type='radio'],
 select,
 .textbox {
 	height: $field-height;
@@ -173,11 +173,11 @@ label.textbox {
 			margin-left: $padding-width;
 		}
 
-		&[size="2"] {
+		&[size='2'] {
 			width: 2em;
 		}
 
-		&[size="4"] {
+		&[size='4'] {
 			width: 4em;
 		}
 	}
@@ -255,8 +255,8 @@ fieldset {
 	}
 
 	button,
-	input[type="checkbox"],
-	input[type="radio"],
+	input[type='checkbox'],
+	input[type='radio'],
 	input + label,
 	select,
 	.textbox {
@@ -320,7 +320,7 @@ fieldset {
 		width: $field-width-large - $gap-width - $button-width;
 	}
 
-	[role="status"] {
+	[role='status'] {
 		@include box-sizing(border-box);
 		display: none;
 		font-size: $font-size-small;
@@ -337,9 +337,9 @@ fieldset {
 			@include transform(translate($field-width-large + $gap-width, calc(#{$field-height} / 2 - 50%)));
 		}
 
-		&:empty {
+		// &:empty {
 
-		}
+		// }
 
 		ul {
 			padding: $padding-height $padding-width;
@@ -354,7 +354,7 @@ fieldset {
 	input:focus,
 	select:focus,
 	.focus {
-		~ [role="status"] {
+		~ [role='status'] {
 			display: block;
 		}
 	}
