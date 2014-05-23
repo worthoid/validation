@@ -34,7 +34,11 @@ invalid class on field-item go back to empty get green indicator not red or empt
 
 use space key in masked input doesnt pass delim all the way
 
+Lint/hint js / html as well as scss
+
 catch reset event not button click?
+
+Use inbuilt validation msg for typeMismatch
 
 need updateStatus in submit() ?
 
