@@ -92,17 +92,18 @@ function isFieldsetValid(fieldset) {
 
 function updateStatus(field, invalidState) {
 	var container,
+		emptyRequired = false,
 		fieldset,
 		list = window.document.createElement('ul'), // frag
 		msg,
 		type,
 		validity;
 
-	function buildListItem(valid, msg) {
+	function buildListItem(invalid, msg) {
 		var item = window.document.createElement('li');
 
-		if (invalidState || field.value) {
-			item.classList.add(valid ? 'valid' : 'invalid');
+		if (invalid || field.value) {
+			item.classList.add(invalid ? 'invalid' : 'valid');
 		}
 
 		item.textContent = msg;
@@ -120,7 +121,7 @@ function updateStatus(field, invalidState) {
 		validity = field.validity;
 
 		if (fieldset && fieldset.title) {
-			list.appendChild(buildListItem(isFieldsetValid(fieldset), fieldset.title));
+			list.appendChild(buildListItem(!isFieldsetValid(fieldset), fieldset.title));
 		} else {
 			switch (type) {
 			case 'email':
@@ -131,6 +132,8 @@ function updateStatus(field, invalidState) {
 			}
 
 			if (field.required) {
+				emptyRequired = validity.valueMissing;
+
 				if (field.nodeName === 'INPUT') {
 					msg = 'Please fill in this required field.';
 				} else if (field.nodeName === 'SELECT') {
@@ -138,31 +141,31 @@ function updateStatus(field, invalidState) {
 				}
 
 				if (msg) {
-					list.appendChild(buildListItem(!validity.valueMissing, msg));
+					list.appendChild(buildListItem(emptyRequired && invalidState, msg));
 				}
 			}
 
 			if (validity.customError) {
-				list.appendChild(buildListItem(false, field.validationMessage));
+				list.appendChild(buildListItem(true, field.validationMessage));
 			} else if (field.hasAttribute('data-minlength')) {
-				list.appendChild(buildListItem(true, getMinLengthMessage(field.getAttribute('data-minlength'))));
+				list.appendChild(buildListItem(emptyRequired && invalidState, getMinLengthMessage(field.getAttribute('data-minlength'))));
 			} else if (field.hasAttribute('data-confirm-primary')) {
-				list.appendChild(buildListItem(true,
+				list.appendChild(buildListItem(false,
 						getConfirmFieldMessage(window.document.getElementById(field.getAttribute('data-confirm-primary')), field)));
 			}
 
 			if (field.pattern) {
-				list.appendChild(buildListItem(!validity.patternMismatch, field.title));
+				list.appendChild(buildListItem(validity.patternMismatch || (emptyRequired && invalidState), field.title));
 			}
 
 			if (type) {
-				list.appendChild(buildListItem(!validity.typeMismatch, 'Must be a valid ' + type + '.'));
+				list.appendChild(buildListItem(validity.typeMismatch || (emptyRequired && invalidState), 'Must be a valid ' + type + '.'));
 			}
 
 			// badInput e.g. letters in number input
 
 			if (!list.hasChildNodes() && !validity.valid) {
-				list.appendChild(buildListItem(false, 'Something with this field is wrong!'));
+				list.appendChild(buildListItem(true, 'Something with this field is wrong!'));
 			}
 		}
 
@@ -487,7 +490,7 @@ function submit() {
 
 		if (fieldItem && field.nodeName !== 'FIELDSET') {
 			fieldItem.classList.add('invalid');
-			updateStatus(field, true);
+			//updateStatus(field, true);
 		}
 	}
 
@@ -499,7 +502,7 @@ function submit() {
 function clearField(field, fieldItem) {
 	fieldItem.classList.remove('invalid');
 	//setCustomValidities(field);
-	updateStatus(field);
+	//updateStatus(field);
 
 	return field;
 }
