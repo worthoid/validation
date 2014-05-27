@@ -46,10 +46,12 @@ $field-container-bg-invalid: null !default; // TESTING ONLY
 
 $field-bg-colour: #fff !default;
 $field-bg-colour-active: null !default;
-$field-bg-colour-focus: null !default;
+$field-bg-colour-focus: $field-bg-colour !default;
 $field-bg-colour-hover: $colour-highlight-light !default;
 $field-bg-colour-invalid: $colour-invalid-light !default;
-$field-bg-colour-valid: $colour-valid-light !default;
+$field-bg-colour-invalid-focus: null !default;
+$field-bg-colour-valid: null !default;
+$field-bg-colour-valid-focus: $colour-valid-light !default;
 
 $field-bg-img-invalid: url(skin/common/images/invalid.svg) !default;
 $field-bg-img-valid: url(skin/common/images/valid.svg) !default;
@@ -60,7 +62,9 @@ $field-border-colour-active: null !default;
 $field-border-colour-focus: $colour-highlight !default;
 $field-border-colour-hover: null !default;
 $field-border-colour-invalid: $colour-invalid !default;
-$field-border-colour-valid: $colour-valid !default;
+$field-border-colour-invalid-focus: null !default;
+$field-border-colour-valid: null !default;
+$field-border-colour-valid-focus: $colour-valid !default;
 
 $field-border-width: 1px !default;
 
@@ -526,14 +530,26 @@ label.textbox {
 
 	select,
 	.textbox {
-		&:valid:focus {
+		&:valid {
 			background-color: $field-bg-colour-valid;
 			border-color: $field-border-colour-valid;
+
+			&:focus,
+			&.focus {
+				background-color: $field-bg-colour-valid-focus;
+				border-color: $field-border-colour-valid-focus;
+			}
 		}
 
 		&:invalid {
 			background-color: $field-bg-colour-invalid;
 			border-color: $field-border-colour-invalid;
+
+			&:focus,
+			&.focus {
+				background-color: $field-bg-colour-invalid-focus;
+				border-color: $field-border-colour-invalid-focus;
+			}
 		}
 	}
 
