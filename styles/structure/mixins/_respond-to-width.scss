@@ -9,7 +9,7 @@
 
 	@if $min and $min > 0 and $max and $max > 0 {
 		@media only screen and (min- + $media-width-feature: if(unitless($min), $min * 1px, $min))
-				and (max- + $media-width-feature: if(unitless($max), $max * 1px, $max)) {
+				and (max- + $media-width-feature: if(unitless($max), $max * 1px, $max) - 1) {
 			@content;
 		}
 	} @else if $min and $min > 0 {
@@ -17,7 +17,7 @@
 			@content;
 		}
 	} @else if $max and $max > 0 {
-		@media only screen and (max- + $media-width-feature: if(unitless($max), $max * 1px, $max)) {
+		@media only screen and (max- + $media-width-feature: if(unitless($max), $max * 1px, $max) - 1) {
 			@content;
 		}
 	}

@@ -182,17 +182,17 @@ body {
 	}
 
 	&.show-columns main::after {
-		@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+		@include respond-to-width(0, $breakpoint-columns-3-large, true) {
 			background-image: linear-gradient(to right, $blue $column-width, transparent $column-width);
 			background-size: $column-width + $gap-width;
 		}
 
-		@include respond-to-width(0, $breakpoint-columns-3 - 1, true) {
+		@include respond-to-width(0, $breakpoint-columns-3, true) {
 			left: $gutter-width-phone-portrait;
 			right: $gutter-width-phone-portrait;
 		}
 
-		@include respond-to-width($breakpoint-columns-3, $breakpoint-columns-3-large - 1, true) {
+		@include respond-to-width($breakpoint-columns-3, $breakpoint-columns-3-large, true) {
 			left: $gutter-width;
 			right: $gutter-width;
 		}
@@ -410,7 +410,7 @@ label.textbox {
 .field-container {
 	input + label {
 		&:only-of-type {
-			@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+			@include respond-to-width(0, $breakpoint-columns-3-large, true) {
 				width: calc(100% - #{$input-width} - #{$gap-width} - #{$field-bg-img-padding});
 			}
 
@@ -421,7 +421,7 @@ label.textbox {
 
 		&:first-of-type:nth-last-of-type(2),
 		&:first-of-type:nth-last-of-type(2) ~ label {
-			@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+			@include respond-to-width(0, $breakpoint-columns-3-large, true) {
 				width: calc((100% - #{$input-width} * 2 - #{$gap-width} * 3 - #{$field-bg-img-padding}) / 2);
 			}
 
@@ -432,7 +432,7 @@ label.textbox {
 
 		&:first-of-type:nth-last-of-type(3),
 		&:first-of-type:nth-last-of-type(3) ~ label {
-			@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+			@include respond-to-width(0, $breakpoint-columns-3-large, true) {
 				width: calc((100% - #{$input-width} * 3 - #{$gap-width} * 4 - #{$field-bg-img-padding}) / 3);
 			}
 

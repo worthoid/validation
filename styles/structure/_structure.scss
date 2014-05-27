@@ -87,12 +87,12 @@ body {
 main {
 	margin: 0 auto;
 
-	@include respond-to-width(0, $breakpoint-columns-3 - 1, true) {
+	@include respond-to-width(0, $breakpoint-columns-3, true) {
 		padding: $grid-height / 2 $gutter-width-phone-portrait;
 		width: $columns-2-width;
 	}
 
-	@include respond-to-width($breakpoint-columns-3, $breakpoint-columns-3-large - 1, true) {
+	@include respond-to-width($breakpoint-columns-3, $breakpoint-columns-3-large, true) {
 		padding: $grid-height / 2 $gutter-width;
 		width: $columns-3-width;
 	}
@@ -250,7 +250,7 @@ fieldset {
 .field-container {
 	position: relative;
 
-	@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+	@include respond-to-width(0, $breakpoint-columns-3-large, true) {
 		@include clearfix;
 	}
 
@@ -274,7 +274,7 @@ fieldset {
 		}
 
 		&:only-of-type {
-			@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+			@include respond-to-width(0, $breakpoint-columns-3-large, true) {
 				width: 100%;
 			}
 
@@ -289,7 +289,7 @@ fieldset {
 			&:first-of-type:nth-last-of-type(2),
 			&:first-of-type:nth-last-of-type(2) ~ select,
 			&:first-of-type:nth-last-of-type(2) ~ .textbox {
-				@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+				@include respond-to-width(0, $breakpoint-columns-3-large, true) {
 					width: calc((100% - #{$gap-width}) / 2);
 				}
 
@@ -301,7 +301,7 @@ fieldset {
 			&:first-of-type:nth-last-of-type(3),
 			&:first-of-type:nth-last-of-type(3) ~ select,
 			&:first-of-type:nth-last-of-type(3) ~ .textbox {
-				@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+				@include respond-to-width(0, $breakpoint-columns-3-large, true) {
 					width: calc((100% - #{$gap-width} * 2) / 3);
 				}
 
@@ -326,7 +326,7 @@ fieldset {
 		font-size: $font-size-small;
 		position: absolute;
 
-		@include respond-to-width(0, $breakpoint-columns-3-large - 1, true) {
+		@include respond-to-width(0, $breakpoint-columns-3-large, true) {
 			top: 100%;
 			width: 100%;
 			z-index: 1;
