@@ -4,7 +4,8 @@
 //
 // $param	Description
 // ==========================================================================
-@mixin arrow($pos, $size: $grid-width / 3, $colour: initial, $border-colour: null, $border-width: 0, $relative: null) {
+ // 'currentColor' used as 'initial' keyword not yet supported in IE (as of 11)
+@mixin arrow($pos, $size: $grid-width / 3, $colour: currentColor, $border-colour: null, $border-width: 0, $relative: null) {
 	$size-inner: if($border-width, $size - $border-width, $size);
 
 	&%arrow-common {

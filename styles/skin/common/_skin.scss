@@ -125,15 +125,6 @@ body {
 }
 
 select {
-	align-items: flex-start; // aligns text in Chrome after Firefox line-height fix
-	line-height: $field-height - if($field-border-width, $field-border-width * 2, 0) - $moz-select-vertical-padding * 2; // fix line-height in Firefox
-	padding-bottom: 0;
-	padding-top: $moz-select-vertical-padding; // fix line-height in Firefox
-
-	// hide arrow in Firefox
-	text-indent: 0.01px;
-	text-overflow: '';
-
 	// hide focus outline, keep text visible
 	&:-moz-focusring {
 		color: transparent;
@@ -143,6 +134,16 @@ select {
 	// hide arrow in IE
 	&::-ms-expand {
 		display: none;
+	}
+
+	@-moz-document url-prefix() { // hide all this from other browsers
+		& {
+			padding-top: $moz-select-vertical-padding; // fix line-height in Firefox
+
+			// hide arrow in Firefox
+			text-indent: 0.01px;
+			text-overflow: '';
+		}
 	}
 }
 
@@ -494,9 +495,9 @@ label.textbox {
 			@if $status-border-width {
 				border: $status-border-colour solid $status-border-width;
 			}
-			height: initial;
+			height: auto; // 'initial' keyword not yet supported in IE (as of 11)
 			opacity: 1;
-			overflow: initial;
+			overflow: visible; // 'initial' keyword not yet supported in IE (as of 11)
 		}
 	}
 }

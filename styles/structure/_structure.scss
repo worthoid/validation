@@ -165,7 +165,7 @@ label.textbox {
 	input {
 		border: none 0;
 		height: 100%;
-		line-height: initial;
+		line-height: normal; // 'initial' keyword not yet supported in IE (as of 11)
 		padding-left: 0;
 		padding-right: 0;
 
@@ -334,7 +334,8 @@ fieldset {
 
 		@include respond-to-width($breakpoint-columns-3-large, null, true) {
 			max-width: $status-width-max-large;
-			@include transform(translate($field-width-large + $gap-width, calc(#{$field-height} / 2 - 50%)));
+			//@include transform(translate($field-width-large + $gap-width, calc(#{$field-height} / 2 - 50%)));
+			@include transform(translate($field-width-large + $gap-width, $field-height / 2) translateY(-50%)); // 'calc' in transforms not yet supported in IE (as of 11)
 		}
 
 		// &:empty {
