@@ -14,6 +14,7 @@ module.exports = function(grunt) {
 		sass: {
 			dev: {
 				options: {
+					cacheLocation: 'styles/.sass-cache',
 					sourcemap: true,
 					style: 'expanded'
 				},
@@ -27,6 +28,7 @@ module.exports = function(grunt) {
 			},
 			dist: {
 				options: {
+					cacheLocation: 'styles/.sass-cache',
 					style: 'compressed'
 				},
 				files: [{
@@ -53,13 +55,13 @@ module.exports = function(grunt) {
 				reset: true
 			},
 			files: {
-				src: ['register.html', 'styles/**/*.svg']
+				src: ['*.html', 'styles/**/*.svg']
 			}
 		},
 
 		watch: {
 			html: {
-				files: 'register.js',
+				files: '*.html',
 				tasks: ['validation']
 			},
 			js: {
